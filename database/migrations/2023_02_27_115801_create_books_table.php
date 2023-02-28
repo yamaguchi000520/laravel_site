@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->text('body');
+            $table->integer('status');
             $table->timestamps();
         });
     }
