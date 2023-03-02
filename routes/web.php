@@ -15,7 +15,13 @@ use App\Http\Controllers\BookController;
 |
 */
 
-Route::resource('books', BookController::class);
+Route::middleware('books')->group(function () {
+    Route::get('/books', [BookController::class, 'index'])->name('book.index');
+    Route::patch('/books', [BookController::class, 'update'])->name('book.update');
+    Route::delete('/books', [BookController::class, 'destroy'])->name('book.destroy');
+    Route::get('/books', [BookController::class, 'edit'])->name('book.edit');
+    Route::get('/books', [BookController::class, 'show'])->name('book.show');
+});
 
 Route::get('/', function () {
     return view('welcome');
